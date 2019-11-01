@@ -1,0 +1,9 @@
+<%@page import="java.util.Map"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+Map<String,Object> user=null;
+if(session.getAttribute("user")!=null){
+	user= (Map<String,Object>)session.getAttribute("user");
+}
+%>
