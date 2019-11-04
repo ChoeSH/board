@@ -18,7 +18,7 @@ if(user==null){
 }else{
 %>
 <%=user.get("uiName")%>님 안녕하세요~<br><br>
-<a href="/views/board/list"><button>게시판 페이지로</button></a><br>
+<a href="/board/list"><button>게시판 페이지로</button></a><br>
 <%
 }
 %>

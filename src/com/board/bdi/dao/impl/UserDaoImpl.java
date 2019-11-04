@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao{
 			rs=ps.executeQuery();
 			if(rs.next()) {
 				user.put("uiName",rs.getString("ui_name"));
-				user.put("uiNum",rs.getString("ui_num"));
+				user.put("ui_num",rs.getString("ui_num"));
 				user.put("credat",rs.getString("credat"));
 				return user;
 			}
@@ -100,7 +100,7 @@ public static void main(String[] args) {
 					e.printStackTrace();
 				}
 			}
-		return null;
+		return user;
 }
 }
 
