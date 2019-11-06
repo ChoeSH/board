@@ -23,8 +23,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Map<String, String> getBoard(Map<String, String> board) {
-		// TODO Auto-generated method stub
-		return null;
+		return bdao.viewBoard(board);
 	}
 
 	@Override
@@ -42,15 +41,31 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Map<String, String> updateBoard(Map<String, String> board) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		public Map<String, String> updateBoard(Map<String, String> board) {
+			int result = bdao.updateBoard(board);
+			Map<String,String> rMap = new HashMap<>();
+			if(result==1) {
+				rMap.put("msg","게시물이 수정 되었습니다.");
+				rMap.put("url","/board/view?bi_num=" + board.get("bi_num"));
+			}else {
+				rMap.put("msg","게시물 삭제가 실패하였습니다.");
+				rMap.put("url","/board/view?bi_num=" + board.get("bi_num"));
+			}
+			return rMap;
+		}
 
 	@Override
 	public Map<String, String> deleteBoard(Map<String, String> board) {
-		// TODO Auto-generated method stub
-		return null;
+		int result= bdao.dropBoard(board);
+		Map<String,String> rMap = new HashMap<>();
+		if(result==1) {
+			rMap.put("msg","게시물 삭제 완료되었습니다.");
+			rMap.put("url","/board/list");
+		}else {
+			rMap.put("msg","게시물 삭제가 실패하였습니다.");
+			rMap.put("url","/board/view?bi_num=" + board.get("bi_num"));
+		}
+		return rMap;
 	}
 
 }

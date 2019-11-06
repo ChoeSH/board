@@ -1,6 +1,7 @@
 package com.board.bdi.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -18,6 +19,26 @@ public class UserController extends HttpServlet {
     private UserService us = new UserServiceImpl();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uri = request.getRequestURI();
+		String cmd = uri.substring(6);
+		String path = "/views/user/list";
+		Map<String,String> user = new HashMap<>();
+		if("list".equals(cmd)) {
+			if(request.getParameter("uiId")!=null && !request.getParameter("uiId").trim().equals("")){
+				user.put("uiId",request.getParameter("uiId"));
+			}else if(request.getParameter("uiNum")!=null && !request.getParameter("uiNum").trim().equals("")){
+				user.put("uiNum",request.getParameter("uiNum"));
+			}else if(request.getParameter("uiName")!=null && !request.getParameter("uiName").trim().equals("")){
+				user.put("uiName",request.getParameter("uiName"));
+			}
+			request.setAttribute("list", us.doList(null));
+		}else if("logout".equals(cmd)) {
+			HttpSession hs =request.getSession();
+			hs.invalidate();
+			path="/";
+	}
+		RequestDispatcher rd = request.getRequestDispatcher(path);
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,8 +72,6 @@ public class UserController extends HttpServlet {
 				request.setAttribute("msg", "회원가입 실패");
 				request.setAttribute("url", "/views/user/signup");
 			}
-		}else if("logout".equals(cmd)) {
-			
 		}else if("update".equals(cmd)) {
 			
 		}else if("delete".equals(cmd)) {

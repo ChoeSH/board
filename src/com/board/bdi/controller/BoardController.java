@@ -23,15 +23,29 @@ public class BoardController extends HttpServlet {
 		
 		String cmd = request.getRequestURI().substring(7);
 		Map<String,String> board = new HashMap<>();
+		String path = "/views/board/list";
 		if("list".equals(cmd)) {
 			List<Map<String,String>> list = bs.getBoardList(board);
-			request.setAttribute("list", list);
-			String path = "/views/board/list";
-			RequestDispatcher rd = request.getRequestDispatcher(path);
-			rd.forward(request, response);
-		}else {
-			doPost(request,response);
+			request.setAttribute("list", list);	
+		}else if("view".equals(cmd)) {
+			path = "/views/board/view";
+			board.put("bi_num",request.getParameter("bi_num"));
+			board= bs.getBoard(board);
+			request.setAttribute("board", board);
+		}else if("delete".equals(cmd)) {
+			path = "/views/msg";
+			board.put("bi_num",request.getParameter("bi_num"));
+			Map<String,String> rMap = bs.deleteBoard(board);
+			request.setAttribute("msg", rMap.get("msg"));
+			request.setAttribute("url", rMap.get("url"));
+		}else if("update".equals(cmd)) {
+			path = "/views/board/update";
+			board.put("bi_num", request.getParameter("bi_num"));
+			board = bs.getBoard(board);
+			request.setAttribute("board", board);
 		}
+		RequestDispatcher rd = request.getRequestDispatcher(path);
+		rd.forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,6 +63,13 @@ public class BoardController extends HttpServlet {
 			Map<String,String> user = (Map<String,String>)hs.getAttribute("user");
 			board.put("ui_num",user.get("ui_num"));
 			Map<String,String> rMap = bs.insertBoard(board);
+			request.setAttribute("msg", rMap.get("msg"));
+			request.setAttribute("url", rMap.get("url"));
+		}else if("update".equals(cmd)) {
+			board.put("bi_title", request.getParameter("bi_title"));
+			board.put("bi_content", request.getParameter("bi_content"));
+			board.put("bi_num", request.getParameter("bi_num"));
+			Map<String,String> rMap = bs.updateBoard(board);
 			request.setAttribute("msg", rMap.get("msg"));
 			request.setAttribute("url", rMap.get("url"));
 		}

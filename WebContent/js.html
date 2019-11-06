@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Javascript</title>
+</head>
+<body>
+<input type="number" id="num1">X
+<input type="number" id="num2">
+<div id="div1"></div>
+<button onclick="changeDiv()">수정</button>
+<script>
+function changeDiv(){		//javascript는 function 기반 language
+	var dbObj=document.getElementById('div1');
+	var str = '';
+	var num1=document.getElementById('num1').value;
+	var num2=document.getElementById('num2').value;
+	
+	for(var i=1; i<=num1; i++){
+		for(var j=1; j<=num2; j++){
+		str+=i+'x'+j+'='+(i*j)+'&nbsp';
+		}
+		str+='<br><br>';
+	}
+	dbObj.innerHTML= str;
+}
+
+	/*document.getElementById("div1").innerHTML= str;
+	var divObj=document.getElementById("div1");
+	divObj.innerHTML="난 수정되었음";
+	
+	var test='abc';
+	test=changeDiv;
+	changeDiv();
+*/
+
+var arr=[];
+for(var i=1; i<=100; i++){
+	if(i%2==0){
+		arr.push(0);
+	}else{
+		arr.push(i);
+	}
+}
+console.log(arr);
+
+
+/* var arr = [1, 2, 3];
+arr.push(4);
+console.log(arr);
+console.log(arr.indexOf(2));
+arr.splice(0,1);
+for(var i=0; i<arr.length; i++){
+	alert(arr[i]);
+}*/
+
+var a =1;
+var str='1';
+//alert(a+str);
+//alert(a==str);		==는 값이 동일한지 비교, ===는 데이터타입의 동일한것까지 비교
+//alert(a===str);		false가 나온다.
+
+
+</script>
+</body>
+</html>

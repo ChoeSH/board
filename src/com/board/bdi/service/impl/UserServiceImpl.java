@@ -1,6 +1,8 @@
 package com.board.bdi.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.board.bdi.dao.UserDao;
@@ -26,5 +28,10 @@ public class UserServiceImpl implements UserService {	//implement: 도구
 		user.put("uiPwd",uiPwd);
 		user.put("uiName",uiName);
 		return udao.signupUser(user);
+	}
+	
+	@Override
+	public List<Map<String,String>> doList(Map<String,String> user){
+		return udao.selectUserList(user);
 	}
 }
