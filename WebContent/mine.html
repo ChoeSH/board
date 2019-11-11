@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="rDiv">
+<table border="1">
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+</tr>
+</table>
+</div>
+<button onclick="startGame()">게임시작</button>
+
+<script>
+var rDiv = document.getElementById('rDiv');
+
+function startGame(){
+	rNum=Math.floor(Math.random()*25)+1;
+	var html='<table border="1">';
+	var n=1;
+	for(var i=1;i<=5;i++){
+		html +='<tr>';
+		for(var j=1;j<=5;j++){
+			html+='<td><button onclick="clickBtn(this,'+(n++)+')">지뢰</butoon></td>';
+		}
+		html+='</tr>';
+	}
+	html+='</table>';
+	rDiv.innerHTML=html;
+}
+function clickBtn(btnObj,btnNum){
+	if(btnNum==rNum){
+		alert('난 지뢰였음');
+	}else
+		btnObj.parentNode.innerHTML = "살았다";
+}
+</script>
+</body>
+</html>

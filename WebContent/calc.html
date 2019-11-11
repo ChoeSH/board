@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+Num 1 : <input type="text" id="num1">
+<select id="op">
+	<option value="+">더하기</option>
+	<option value="-">빼기</option>
+	<option value="/">나누기</option>
+	<option value="*">곱하기</option>
+</select>
+Num 2 : <input type="text" id="num2">
+<button onclick="doCalc()">SEND</button>
+<br>
+Result : <input type="number" id="result">
+<script>
+const xhr = new XMLHttpRequest();
+function doCalc(){
+	var num1 = document.getElementById('num1').value;
+	var num2 = document.getElementById('num2').value;
+	var op = document.getElementById('op').value;
+	
+	var json = {
+		num1:num1,
+		num2:num2,
+		op:op
+	}
+	
+	var jsonStr = JSON.stringify(json);
+	var url = '/calc?json=' + encodeURIComponent(jsonStr);
+	xhr.open('GET', url);
+	xhr.onreadystatechange = function(e){
+		if(xhr.readyState == 4){
+			if(xhr.status == 200){
+				document.getElementById('result').value = xhr.responseText;
+			}
+		}
+	}
+	xhr.send();
+}
+</script>
+</body>
+</html>

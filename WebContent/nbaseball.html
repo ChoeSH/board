@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="number" id="num1">
+	<input type="number" id="num2">
+	<button onclick="checkNum()">야구게임</button>
+	<div id="rDiv"></div>
+	<script>
+		var rNum1 = Math.floor(Math.random() * 9) + 1;
+		var rNum2 = Math.floor(Math.random() * 9) + 1;
+		
+		var num1Obj = document.getElementById("num1");
+		var num2Obj = document.getElementById("num2");
+		
+		function checkNum() {
+			var result = 'OUT';
+			if (rNum1 == num1Obj.value) {
+				result = '1 STRIKE';
+			if(rNum2 == num2Obj.value){
+				result = '2 STRIKE!!';
+			}else if(rNum1 != num1Obj.value){
+				result = '1 OUT';
+				if(rNum2 != num2Obj.value){
+				result= '2 OUT';
+			}else{
+				result = '1 BALL';
+			}
+			}else{
+				result='OUT';
+			}
+			document.getElementById("rDiv").innerHTML = result;
+		}
+		}
+	</script>
+</body>
+</html>

@@ -20,7 +20,6 @@ public class BoardController extends HttpServlet {
 	private BoardService bs = new BoardServiceImpl();
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String cmd = request.getRequestURI().substring(7);
 		Map<String,String> board = new HashMap<>();
 		String path = "/views/board/list";

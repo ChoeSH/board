@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+url: <input type="text" id="url">
+<button onclick="doSend()">SEND</button>
+<div id="rDiv"></div>
+<script>
+const xhr = new XMLHttpRequest();
+var rDiv = document.getElementById('rDiv');
+function doSend(){
+	var url = document.getElementById('url').value;
+	
+// 	alert(xhr.readyState); // 0
+	xhr.open('GET', url);
+// 	alert(xhr.readyState); // 1
+	
+	// 이벤트는 모두 소문자로!
+	xhr.onreadystatechange = function(e){
+// 		alert(xhr.readyState); // 2, 3, 4
+		// request 전달 완료! && 원하는 메세지 전달 성공!
+		if(xhr.readyState == 4 && xhr.status == 200){
+				rDiv.innerHTML = xhr.responseText;
+		} else{
+			console.log(xhr.responseText);
+			rDiv.innerHTML = xhr.responseText;
+		}
+	}
+	xhr.send();
+}
+</script>
+</body>
+</html>

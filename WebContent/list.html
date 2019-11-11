@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+/*var str='{"name":"홍길동","age":"33"}';
+document.write(str.name);
+var h = JSON.parse(str);
+document.write(h.name);
+document.write(h.age);*/
+
+window.onload = function(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/list');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				var list = JSON.parse(xhr.responseText);
+				var html = '<table border="1">';
+				html+= '<tr>';
+				html+= '<th>이름</th>';
+				html+= '<th>나이</th>';
+				html+= '</tr>';
+				for(var i=0; i<list.length; i++){
+					html+='<tr>';
+					html+='<td>'+list[i].name+'</td>';
+					html+='<td>'+list[i].age+'</td>';
+					html+='</tr>';
+				}
+				html+='</table>';
+				document.getElementById('rDiv').innerHTML = html;
+			}
+		}
+	}
+	xhr.send();
+
+	/*
+	var html ='<tr>';
+	html +='<tr>';
+	html +='<th>이름</th><th>나이</th>';
+	html +='</tr>';
+	for(var i=0; i<hArr.length;i++){
+		var human = hArr[i];
+		html +='<tr>';
+		html += '<td>'+human.name+'</td><td>'+human.age+'</td>';
+		html +='</tr>';
+	}
+	html +='</table>';
+	document.getElementById('rDiv').innerHTML = html;*/
+}	
+</script>
+<div id='rDiv'></div>
+</body>
+</html>

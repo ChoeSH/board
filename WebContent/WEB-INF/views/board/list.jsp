@@ -37,6 +37,29 @@
 	<button onclick="goPage('/views/board/insert')">글쓰기</button>
 
 	<script>
+	window.onload = function(){
+		var xhr=XMLHttpRequest();
+		xhr.open('GET','/board/list');
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4){
+				if(xhr.status==200){
+					var list = JSON.parse(xhr.responseText);	//json으로 java와 javascript 통신하는것이 다수
+					html = '';
+					for(var i=0;i<list.length;i++){
+					html = '<tr>';
+					html+='<td>'+list[i].bi_Num+'</td>';
+					html+='<td>'+list[i].bi_Title+'</td>';
+					html+='<td>'+list[i].bi_Name+'</td>';
+					html+='<td>'+list[i].credat+'</td>';
+					html+='<td>'+list[i].cretim+'</td>';
+					html+='</tr>';
+					}
+					document.getElementById('tBody').innerHTML=html;	
+				}
+			}
+		}
+		xhr.send();
+	}
 		function goPage(url) {
 			location.href = url;
 		}

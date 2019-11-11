@@ -1,43 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>board</display-name>
-  <welcome-file-list>
-    <welcome-file>/WEB-INF/views/index.jsp</welcome-file>
-  </welcome-file-list>
-  
-<servlet>
-<servlet-name>URIController</servlet-name>
-<servlet-class>com.board.bdi.controller.URIController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>URIController</servlet-name>
-<url-pattern>/views/*</url-pattern>
-</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>board</display-name>
+	<welcome-file-list>
+		<welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+	</welcome-file-list>
 
-<servlet>
-<servlet-name>UserController</servlet-name>
-<servlet-class>com.board.bdi.controller.UserController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>UserController</servlet-name>
-<url-pattern>/user/*</url-pattern>
-</servlet-mapping>
+	<servlet>
+		<servlet-name>URIController</servlet-name>
+		<servlet-class>com.board.bdi.controller.URIController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>URIController</servlet-name>
+		<url-pattern>/views/*</url-pattern>
+	</servlet-mapping>
 
-<servlet>
-<servlet-name>BoardController</servlet-name>
-<servlet-class>com.board.bdi.controller.BoardController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>BoardController</servlet-name>
-<url-pattern>/board/*</url-pattern>
-</servlet-mapping>
+	<servlet>
+		<servlet-name>UserController</servlet-name>
+		<servlet-class>com.board.bdi.controller.UserController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/user/*</url-pattern>
+	</servlet-mapping>
 
-<servlet>
-<servlet-name>TestController</servlet-name>
-<servlet-class>com.board.bdi.controller.TestController</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>TestController</servlet-name>
-<url-pattern>/test/*</url-pattern>
-</servlet-mapping>
+	<servlet>
+		<servlet-name>BoardController</servlet-name>
+		<servlet-class>com.board.bdi.controller.BoardController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardController</servlet-name>
+		<url-pattern>/board/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>TestController</servlet-name>
+		<servlet-class>com.board.bdi.controller.TestController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestController</servlet-name>
+		<url-pattern>/test/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListController</servlet-name>
+		<servlet-class>com.board.bdi.controller.ListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListController</servlet-name>
+		<url-pattern>/list/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AjaxController</servlet-name>
+		<servlet-class>com.board.bdi.controller.AjaxController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AjaxController</servlet-name>
+		<url-pattern>/ajax/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CalcController</servlet-name>
+		<servlet-class>com.board.bdi.controller.CalcController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CalcController</servlet-name>
+		<url-pattern>/calc/*</url-pattern>
+	</servlet-mapping>
+
 </web-app>
